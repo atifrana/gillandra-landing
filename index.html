@@ -512,7 +512,7 @@
             <select id="qty" class="border border-forest-900/20 rounded-full px-4 py-3 font-head bg-white">
               <option>1</option><option>2</option><option>3</option>
             </select>
-            <a href="#" data-cta="buy" class="flex-1 text-center bg-ember hover:bg-forest-800 text-white font-head uppercase tracking-widest px-8 py-4 rounded-full shadow-soft text-lg transition">
+            <a id="add-to-cart" href="https://www.gillandra.com.au/cart/48698865189105:1" data-cta="buy" class="flex-1 text-center bg-ember hover:bg-forest-800 text-white font-head uppercase tracking-widest px-8 py-4 rounded-full shadow-soft text-lg transition">
               Add to Cart
             </a>
           </div>
@@ -586,6 +586,14 @@
         if (window.dataLayer) window.dataLayer.push({ event: 'cta_click', cta: el.getAttribute('data-cta') });
       });
     });
+
+    const SHOPIFY_STORE = 'https://www.gillandra.com.au';
+    const SHOPIFY_VARIANT = '48698865189105';
+    const qtyEl = document.getElementById('qty');
+    const atcEl = document.getElementById('add-to-cart');
+    function updateCartLink(){ if (atcEl) atcEl.href = SHOPIFY_STORE + '/cart/' + SHOPIFY_VARIANT + ':' + (qtyEl ? qtyEl.value : 1); }
+    if (qtyEl) qtyEl.addEventListener('change', updateCartLink);
+    updateCartLink();
   </script>
 </body>
 </html>
